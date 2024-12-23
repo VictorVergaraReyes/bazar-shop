@@ -1,5 +1,6 @@
 import SearchBar from "../../components/searchBar";
 import { Box } from "@mui/material";
+import { Filter } from "../../components/filter";
 
 const styles = {
   searchBar: {
@@ -11,6 +12,7 @@ const styles = {
   },
 };
 
+
 export const Home = () => {
   return (
     <>
@@ -21,6 +23,7 @@ export const Home = () => {
           }}
         />
       </Box>
+      <Filter/>
     </>
   );
 };
