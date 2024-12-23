@@ -1,4 +1,5 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { theme } from "../../styled-components/theme";
 
 const footerData = [
   {
@@ -36,16 +37,39 @@ const footerData = [
   },
 ];
 
+const styles = {
+  head: {
+    fontSize: "14px",
+    color:theme.palette.text.secondary
+  },
+  bodyText: {
+    fontSize: "12px",
+  },
+  footerStyle: {
+    width: "100%",
+    display: "flex",
+    padding:"20px 0px",
+    flexDirection: "row",
+    position: "fixed",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
+    bottom: "0",
+    backgroundColor:"#000"
+  },
+};
+
 export const Footer = () => {
   return (
     <>
-      <Box>
+      <Box sx={styles.footerStyle}>
         {footerData.map((section) => {
           return (
             <Box key={section.head}>
-              <h1>{section.head}</h1>
+              <Typography sx={styles.head}>{section.head}</Typography>
               {section.body.map((item) => (
-                <div key={item.text}>{item.text}</div>
+                <Typography sx={styles.bodyText} key={item.text}>
+                  {item.text}
+                </Typography>
               ))}
             </Box>
           );

@@ -13,9 +13,10 @@ export const theme = createTheme({
     },
     text: {
       primary: "#000000",
+      secondary:"#F0F0F0"
     },
     warning: {
       main: "#DB4444",
     },
-  },
+  }
 });
