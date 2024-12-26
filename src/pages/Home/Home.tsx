@@ -1,6 +1,7 @@
 import SearchBar from "../../components/searchBar";
 import { Box } from "@mui/material";
 import { Filter } from "../../components/filter";
+import { ProductCard } from "../../components/productCard";
 
 const styles = {
   searchBar: {
@@ -23,6 +24,7 @@ export const Home = () => {
           }}
         />
       </Box>
+      <ProductCard/>
       <Filter/>
     </>
   );
