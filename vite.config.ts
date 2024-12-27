@@ -1,27 +1,21 @@
-import { defineWorkspace } from 'vitest/config'
+import { defineConfig, mergeConfig } from 'vite'
+import { defineConfig as defineVitestConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
 
-export default defineWorkspace([
-  // you can use a list of glob patterns to define your workspaces
-  // Vitest expects a list of config files
-  // or directories where there is a config file
-  'packages/*',
-  'tests/*/vitest.config.{e2e,unit}.ts',
-  // you can even run the same tests,
-  // but with different configs in the same "vitest" process
-  {
+export default mergeConfig(
+  defineConfig({
+    plugins: [react()]
+  }),
+  defineVitestConfig({
     test: {
-      name: 'happy-dom',
-      root: './shared_tests',
+      globals: true,
       environment: 'happy-dom',
-      setupFiles: ['./setup.happy-dom.ts'],
-    },
-  },
-  {
-    test: {
-      name: 'node',
-      root: './shared_tests',
-      environment: 'node',
-      setupFiles: ['./setup.node.ts'],
-    },
-  },
-])
+      setupFiles: './src/test/setup.ts',
+      css: true,
+      coverage: {
+        provider: 'istanbul',
+        reporter: ['text', 'json', 'html'],
+      },
+    }
+  })
+)
