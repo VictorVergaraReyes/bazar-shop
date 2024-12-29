@@ -1,7 +1,7 @@
 import SearchBar from "../../components/searchBar";
 import { Box } from "@mui/material";
 import { Filter } from "../../components/filter";
-import { ProductCard } from "../../components/productCard";
+import ProductCard from "../../components/productCard";
 
 const styles = {
   searchBar: {
@@ -24,7 +24,7 @@ export const Home = () => {
           }}
         />
       </Box>
-      <ProductCard/>
+      <ProductCard name="laptop" description="lorem ipsum" image="https://www.notebookcheck.org/fileadmin/Notebooks/Lenovo/ThinkPad_E16_G1_21JUS08X00/IMG_0312.JPG" rating={4}/>
       <Filter/>
     </>
   );
