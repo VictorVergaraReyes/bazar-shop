@@ -23,7 +23,7 @@ interface ProductCardProps {
 // Styled components
 const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: "sm",
-  width: "100%",
+  width: "auto",
   height: "100%",
   overflow: "hidden",
   transition: "all 0.3s ease",

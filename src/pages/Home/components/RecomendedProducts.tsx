@@ -1,7 +1,7 @@
 //import { Box } from "@mui/material";
 import ProductCard from "../../../components/productCard";
 import { styled } from "@mui/material/styles";
-import Grid from '@mui/material/Grid2';
+import Grid from "@mui/material/Grid2";
 const recomended = [
   {
     name: "Lenovo Thinkpad",
@@ -16,25 +16,25 @@ const recomended = [
     image: "https://i.blogs.es/adefd2/pixel-8-16/375_375.jpeg",
     rating: 4,
   },
-    {
-      name: "Samsung curve monitor",
-      description:
-        "https://www.costco.com.mx/medias/sys_master/products/hc3/h92/189581990985758.jpg",
-      image:
-        "https://www.costco.com.mx/medias/sys_master/products/hc3/h92/189581990985758.jpg",
-      rating: 4,
-    },
-    {
-      name: "Ergonomic mouse",
-      description: "Logitech lift ergonomic mouse",
-      image:
-        "https://www.zegucom.com.mx/productos/910-006472/miniatura/webp/img_1.webp",
-      rating: 5,
-    },
+  {
+    name: "Samsung curve monitor",
+    description:
+      "https://www.costco.com.mx/medias/sys_master/products/hc3/h92/189581990985758.jpg",
+    image:
+      "https://www.costco.com.mx/medias/sys_master/products/hc3/h92/189581990985758.jpg",
+    rating: 4,
+  },
+  {
+    name: "Ergonomic mouse",
+    description: "Logitech lift ergonomic mouse",
+    image:
+      "https://www.zegucom.com.mx/productos/910-006472/miniatura/webp/img_1.webp",
+    rating: 5,
+  },
 ];
 
 const StyledBox = styled(Grid)(() => ({
-    height: "50vh",
+  height: "300px",
   maxWidth: "sm",
   display: "flex",
   flexDirection: "row",
