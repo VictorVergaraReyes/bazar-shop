@@ -11,12 +11,13 @@ import {
 import { Star } from "lucide-react";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid2";
+import { formatMoney } from "../utils/formatMoney";
 
 interface ProductCardProps {
   name: string;
   image: string;
   rating: number;
-  price?: string;
+  price?: number;
 }
 
 // Styled components
@@ -119,7 +120,7 @@ const ProductCard = ({
                 color: "#7E69AB",
               }}
             >
-              {price}
+              {formatMoney(price)}
             </Typography>
             <StyledButton size="small">Add to Cart</StyledButton>
           </div>
