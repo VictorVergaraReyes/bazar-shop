@@ -11,11 +11,11 @@ const styles = {
     fontSize: "12px",
   },
   header: {
-    width: "100%",
+    width: "100vw",
     display: "flex",
     padding:"10px 0px",
     flexDirection: "row",
-    position: "fixed",
+    position: "static",
     flexWrap: "wrap",
     justifyContent: "center",
     top: "0",

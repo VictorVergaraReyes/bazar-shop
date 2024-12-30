@@ -14,7 +14,6 @@ import Grid from "@mui/material/Grid2";
 
 interface ProductCardProps {
   name: string;
-  description: string;
   image: string;
   rating: number;
   price?: string;
@@ -22,21 +21,21 @@ interface ProductCardProps {
 
 // Styled components
 const StyledCard = styled(Card)(({ theme }) => ({
-  maxWidth: "sm",
-  width: "auto",
-  height: "100%",
-  overflow: "hidden",
-  transition: "all 0.3s ease",
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%', // Asegura que la tarjeta ocupe todo el alto disponible
+  overflow: 'hidden',
+  transition: 'all 0.3s ease',
   "&:hover": {
     boxShadow: theme.shadows[5],
   },
-  borderRadius:'12px'
+  borderRadius: '12px'
 }));
 
 const ImageWrapper = styled("div")({
   position: "relative",
-  aspectRatio: "2/1",
-  overflow: "hidden",
+  flex: 1, // Permite que la imagen ocupe el espacio disponible
+  minHeight: 0, // Importante para que flex: 1 funcione correctamente
 });
 
 // Eliminamos StyledCardMedia y usaremos CardMedia directamente
@@ -53,10 +52,11 @@ const RatingChip = styled(Chip)(({ theme }) => ({
 }));
 
 const StyledButton = styled(Button)(({}) => ({
-  borderRadius: "9999px",
+  borderRadius: "10px",
   backgroundColor: "#9b87f5",
   color: "white",
-  padding: "8px 16px",
+  fontSize:'12px',
+  //padding: "8px 16px",
   "&:hover": {
     backgroundColor: "#7E69AB",
   },
@@ -64,16 +64,15 @@ const StyledButton = styled(Button)(({}) => ({
 
 const ProductCard = ({
   name,
-  description,
   image,
   rating,
-  price = "$999.99",
+  price,
 }: ProductCardProps) => {
   return (
     // <Grid item xs={12} sm={6} md={4}> size={{ xs: 6, md: 8 }}
-    <Grid size={{ xs: 4, sm: 3, md: 2 }}>
+    <Grid size={{ xs: 4, sm: 3, md: 3 }}>
       <StyledCard>
-        <ImageWrapper>
+        <ImageWrapper sx={{height:'75%'}}>
           <CardMedia
             sx={{
               height: "100%",
@@ -97,25 +96,25 @@ const ProductCard = ({
           sx={{
             fontSize:'9px',
             "& .MuiCardHeader-title": {
+              fontSize:'16px',
               fontWeight: 600,
               color: "#403E43",
             },
           }}
         />
         <CardContent>
-          <Typography variant="body2" sx={{ color: "#8E9196", mb: 3 }}>
-            {description}
-          </Typography>
           <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
+              height:'15%'
             }}
           >
             <Typography
               variant="h6"
               sx={{
+                fontSize:'16px',
                 fontWeight: 700,
                 color: "#7E69AB",
               }}
