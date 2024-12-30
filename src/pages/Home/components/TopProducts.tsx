@@ -10,6 +10,7 @@ const top = [
       "https://www.notebookcheck.org/fileadmin/Notebooks/Lenovo/ThinkPad_E16_G1_21JUS08X00/IMG_0312.JPG",
     price:7500,    
       rating: 4.5,
+      id:93745
   },
   {
     name: "Google Pixel 8",
@@ -17,6 +18,7 @@ const top = [
     image: "https://i.blogs.es/adefd2/pixel-8-16/375_375.jpeg",
     price:12000,    
     rating: 4,
+    id: 109235
   },
   {
     name: "Samsung curve monitor",
@@ -26,6 +28,7 @@ const top = [
       "https://www.costco.com.mx/medias/sys_master/products/hc3/h92/189581990985758.jpg",
     price:2900,    
       rating: 4,
+      id: 20846
   },
   {
     name: "Ergonomic mouse",
@@ -34,6 +37,7 @@ const top = [
       "https://www.zegucom.com.mx/productos/910-006472/miniatura/webp/img_1.webp",
     price:900,    
       rating: 5,
+      id: 294756
   },
 ];
 
@@ -55,6 +59,8 @@ export const TopProducts = () => {
           image={product.image}
           rating={product.rating}
           price={product.price}
+          key={product.id}
+          id={product.id}
         />
       ))}
     </StyledBox>

@@ -18,6 +18,7 @@ interface ProductCardProps {
   image: string;
   rating: number;
   price: number;
+  id: number;
 }
 
 // Styled components
@@ -38,6 +39,10 @@ const ImageWrapper = styled("div")({
   flex: 1, // Permite que la imagen ocupe el espacio disponible
   minHeight: 0, // Importante para que flex: 1 funcione correctamente
 });
+
+const handleClick = (id:number) => {
+  console.log("clicked on", id)
+}
 
 // Eliminamos StyledCardMedia y usaremos CardMedia directamente
 
@@ -68,6 +73,7 @@ const ProductCard = ({
   image,
   rating,
   price,
+  id
 }: ProductCardProps) => {
   return (
     // <Grid item xs={12} sm={6} md={4}> size={{ xs: 6, md: 8 }}
@@ -94,15 +100,17 @@ const ProductCard = ({
         </ImageWrapper>
         <CardHeader
           title={name}
+          onClick={() => {handleClick(id)}}
           sx={{
             fontSize:'9px',
             "& .MuiCardHeader-title": {
               fontSize:'16px',
               fontWeight: 600,
               color: "#403E43",
+              cursor: 'pointer'
             },
           }}
-        />
+          />
         <CardContent>
           <div
             style={{

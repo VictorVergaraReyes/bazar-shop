@@ -55,10 +55,12 @@ export const RecomendedProducts = () => {
     <StyledBox container spacing={2}>
       {recomended.map((product) => (
         <ProductCard
+          id={product.id}
           name={product.name}
           image={product.image}
           rating={product.rating}
           price={product.price}
+          key={product.id}
         />
       ))}
     </StyledBox>
