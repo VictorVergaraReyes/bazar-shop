@@ -17,7 +17,7 @@ interface ProductCardProps {
   name: string;
   image: string;
   rating: number;
-  price?: number;
+  price: number;
 }
 
 // Styled components

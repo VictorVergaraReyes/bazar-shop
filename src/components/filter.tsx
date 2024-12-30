@@ -2,8 +2,8 @@ import { Box } from "@mui/material"
 
 const styles = {
     list:{
-        width:'20vw',
-        heigth:'20vh'
+        // width:'20%',
+        // heigth:'100%'
     }
 }
 export const Filter = () => {

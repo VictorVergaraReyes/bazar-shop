@@ -15,7 +15,7 @@ const styles = {
     display: "flex",
     padding:"10px 0px",
     flexDirection: "row",
-    position: "static",
+    position: "absolute",
     flexWrap: "wrap",
     justifyContent: "center",
     top: "0",
