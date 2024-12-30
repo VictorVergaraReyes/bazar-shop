@@ -50,7 +50,7 @@ const styles = {
     display: "flex",
     padding:"20px 0px",
     flexDirection: "row",
-    position: "fixed",
+    position: "static",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
     bottom: "0",
@@ -60,7 +60,6 @@ const styles = {
 
 export const Footer = () => {
   return (
-    <>
       <Box sx={styles.footerStyle}>
         {footerData.map((section) => {
           return (
@@ -75,6 +74,5 @@ export const Footer = () => {
           );
         })}
       </Box>
-    </>
   );
 };

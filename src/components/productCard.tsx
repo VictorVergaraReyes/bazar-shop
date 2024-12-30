@@ -1,214 +1,131 @@
-import React, { useState } from 'react';
+//import React from 'react';
 import {
   Card,
   CardContent,
+  CardHeader,
   CardMedia,
   Typography,
   Button,
-  Rating,
-  Box,
   Chip,
-  IconButton,
-  Tooltip,
-  useTheme,
-  styled,
-} from '@mui/material';
-import {
-  ShoppingCart as CartIcon,
-  Favorite as FavoriteIcon,
-  FavoriteBorder as FavoriteBorderIcon,
-  LocalOffer as DiscountIcon,
-} from '@mui/icons-material';
+} from "@mui/material";
+import { Star } from "lucide-react";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid2";
 
 interface ProductCardProps {
-  product: {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    originalPrice?: number;
-    rating: number;
-    image: string;
-    discount?: number;
-    stock: number;
-    category: string;
-  };
-  onAddToCart: (productId: string) => void;
-  colorScheme?: {
-    primary?: string;
-    secondary?: string;
-    accent?: string;
-  };
+  name: string;
+  image: string;
+  rating: number;
+  price?: string;
 }
 
-const StyledCard = styled(Card)<{ colors: ProductCardProps['colorScheme'] }>(
-  ({ theme, colors }) => ({
-    maxWidth: 345,
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    transition: 'transform 0.2s ease-in-out',
-    backgroundColor: colors?.primary || theme.palette.background.paper,
-    '&:hover': {
-      transform: 'translateY(-4px)',
-      boxShadow: theme.shadows[8],
-    },
-  })
-);
+// Styled components
+const StyledCard = styled(Card)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%', // Asegura que la tarjeta ocupe todo el alto disponible
+  overflow: 'hidden',
+  transition: 'all 0.3s ease',
+  "&:hover": {
+    boxShadow: theme.shadows[5],
+  },
+  borderRadius: '12px'
+}));
 
-const StyledPrice = styled(Typography)<{ hasDiscount?: boolean }>(
-  ({ hasDiscount }) => ({
-    textDecoration: hasDiscount ? 'line-through' : 'none',
-    color: hasDiscount ? 'text.secondary' : 'text.primary',
-  })
-);
+const ImageWrapper = styled("div")({
+  position: "relative",
+  flex: 1, // Permite que la imagen ocupe el espacio disponible
+  minHeight: 0, // Importante para que flex: 1 funcione correctamente
+});
 
-const ProductCard: React.FC<ProductCardProps> = ({
-  product,
-  onAddToCart,
-  colorScheme = {},
-}) => {
-  const theme = useTheme();
-  const [isFavorite, setIsFavorite] = useState(false);
+// Eliminamos StyledCardMedia y usaremos CardMedia directamente
 
-  const {
-    id,
-    name,
-    description,
-    price,
-    originalPrice,
-    rating,
-    image,
-    discount,
-    stock,
-    category,
-  } = product;
+const RatingChip = styled(Chip)(({ theme }) => ({
+  position: "absolute",
+  top: theme.spacing(1),
+  right: theme.spacing(1),
+  backgroundColor: "rgba(255, 255, 255, 0.9)",
+  color: "#403E43",
+  "& .MuiChip-icon": {
+    color: "#F97316",
+  },
+}));
 
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
-  };
+const StyledButton = styled(Button)(({}) => ({
+  borderRadius: "10px",
+  backgroundColor: "#9b87f5",
+  color: "white",
+  fontSize:'12px',
+  //padding: "8px 16px",
+  "&:hover": {
+    backgroundColor: "#7E69AB",
+  },
+}));
 
-  const handleAddToCart = () => {
-    onAddToCart(id);
-  };
-
+const ProductCard = ({
+  name,
+  image,
+  rating,
+  price,
+}: ProductCardProps) => {
   return (
-    <StyledCard colors={colorScheme}>
-      <Box sx={{ position: 'relative' }}>
-        <CardMedia
-          component="img"
-          height="200"
-          image={image}
-          alt={name}
-          sx={{ objectFit: 'cover' }}
-        />
-        {discount && (
-          <Chip
-            icon={<DiscountIcon />}
-            label={`${discount}% OFF`}
-            color="error"
+    // <Grid item xs={12} sm={6} md={4}> size={{ xs: 6, md: 8 }}
+    <Grid size={{ xs: 4, sm: 3, md: 3 }}>
+      <StyledCard>
+        <ImageWrapper sx={{height:'75%'}}>
+          <CardMedia
             sx={{
-              position: 'absolute',
-              top: 16,
-              left: 16,
-              backgroundColor: colorScheme.accent || theme.palette.error.main,
+              height: "100%",
+              width: "100%",
+              objectFit: "cover",
+              transition: "transform 0.3s ease",
+              "&:hover": {
+                transform: "scale(1.05)",
+              },
             }}
+            image={image}
           />
-        )}
-        <IconButton
-          sx={{
-            position: 'absolute',
-            top: 16,
-            right: 16,
-            backgroundColor: 'white',
-            '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.9)' },
-          }}
-          onClick={handleFavoriteClick}
-        >
-          {isFavorite ? (
-            <FavoriteIcon sx={{ color: theme.palette.error.main }} />
-          ) : (
-            <FavoriteBorderIcon />
-          )}
-        </IconButton>
-      </Box>
-
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-        <Typography
-          gutterBottom
-          variant="h6"
-          component="h2"
-          sx={{ color: colorScheme.secondary || 'text.primary' }}
-        >
-          {name}
-        </Typography>
-
-        <Box sx={{ mb: 1 }}>
-          <Chip
-            label={category}
+          <RatingChip
+            icon={<Star size={16} style={{ fill: "#F97316" }} />}
+            label={rating.toFixed(1)}
             size="small"
-            sx={{
-              backgroundColor: colorScheme.secondary || theme.palette.primary.light,
-              color: 'white',
-            }}
           />
-        </Box>
-
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ mb: 2, flexGrow: 1 }}
-        >
-          {description}
-        </Typography>
-
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-          <Rating value={rating} precision={0.5} readOnly size="small" />
-          <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
-            ({rating})
-          </Typography>
-        </Box>
-
-        <Box
+        </ImageWrapper>
+        <CardHeader
+          title={name}
           sx={{
-            display: 'flex',
-            alignItems: 'baseline',
-            gap: 1,
-            mb: 2,
+            fontSize:'9px',
+            "& .MuiCardHeader-title": {
+              fontSize:'16px',
+              fontWeight: 600,
+              color: "#403E43",
+            },
           }}
-        >
-          {originalPrice && (
-            <StyledPrice variant="body1" hasDiscount>
-              ${originalPrice}
-            </StyledPrice>
-          )}
-          <Typography variant="h6" component="span" color="primary.main">
-            ${price}
-          </Typography>
-        </Box>
-
-        <Tooltip title={stock === 0 ? 'Out of stock' : 'Add to cart'}>
-          <span>
-            <Button
-              variant="contained"
-              startIcon={<CartIcon />}
-              fullWidth
-              onClick={handleAddToCart}
-              disabled={stock === 0}
+        />
+        <CardContent>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              height:'15%'
+            }}
+          >
+            <Typography
+              variant="h6"
               sx={{
-                backgroundColor: colorScheme.accent || theme.palette.primary.main,
-                '&:hover': {
-                  backgroundColor:
-                    colorScheme.accent || theme.palette.primary.dark,
-                },
+                fontSize:'16px',
+                fontWeight: 700,
+                color: "#7E69AB",
               }}
             >
-              {stock === 0 ? 'Out of Stock' : 'Add to Cart'}
-            </Button>
-          </span>
-        </Tooltip>
-      </CardContent>
-    </StyledCard>
+              {price}
+            </Typography>
+            <StyledButton size="small">Add to Cart</StyledButton>
+          </div>
+        </CardContent>
+      </StyledCard>
+    </Grid>
   );
 };
 
