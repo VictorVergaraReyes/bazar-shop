@@ -1,32 +1,18 @@
-import SearchBar from "../../components/searchBar";
-import { Box } from "@mui/material";
+import { SubHeader } from "./components/SubHeader";
 import { Filter } from "../../components/filter";
 import { RecomendedProducts } from "./components/RecomendedProducts";
 import { TopProducts } from "./components/TopProducts";
 import { PrincipalCard } from "../MainLayout/PrincipalCard";
 import Grid from "@mui/material/Grid2";
+import { Box } from "@mui/material";
 
-const styles = {
-  searchBar: {
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    position:"relative",
-    top:"10vh"
-  },
-};
+
 
 
 export const Home = () => {
   return (
-    <>
-      <Box sx={styles.searchBar}>
-        <SearchBar
-          onSearch={() => {
-            console.log("search");
-          }}
-        />
-      </Box>
+    <Box sx={{width:'100%'}}>
+      <SubHeader/>
       <Grid container spacing={2}>
         <Grid size={3}><Filter/></Grid>
         <Grid size={9}><PrincipalCard/></Grid>
@@ -37,6 +23,6 @@ export const Home = () => {
       <RecomendedProducts/>
       <h2>Top products</h2>
       <TopProducts/>
-    </>
+    </Box>
   );
 };

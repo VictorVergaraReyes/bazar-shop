@@ -46,7 +46,7 @@ const styles = {
     fontSize: "12px",
   },
   footerStyle: {
-    width: "100%",
+    width: "100vw",
     display: "flex",
     padding:"20px 0px",
     flexDirection: "row",
